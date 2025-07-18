@@ -8,14 +8,11 @@
 }
 
 html {
+  font-size: 90%;
   background-color: #030712;
   min-height: 100vh;
 }
 
 body {
-  transform: scale(0.9);
-  transform-origin: top left;
-  width: 111.11%;
-  min-height: 111.11vh;
-  overflow: auto;
+  font-family: -apple-system, "Segoe UI", Ubuntu, sans-serif;
 }

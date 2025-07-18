@@ -46,11 +46,16 @@ export const MaterialInputField: React.FC<MaterialInputFieldProps> = ({
         pattern="[0-9]*"
         className="bg-transparent text-white text-center font-bold text-sm focus:outline-none inline-block select-all"
         style={{
-          padding: '2px 2px',
+          paddingLeft: "0px",
+          paddingRight: "1px",
           // Dynamically set both min-width and max-width to match dynamicWidth
           minWidth: `${dynamicWidth}ch`,
           maxWidth: `${dynamicWidth}ch`, 
-          transition: 'min-width 0.1s ease-out, max-width 0.1s ease-out'
+          transition: 'min-width 0.1s ease-out, max-width 0.1s ease-out',
+          verticalAlign: 'middle',
+          height: '20px',
+          lineHeight: '20px',
+          boxSizing: 'border-box'
         }}
         onInput={(e) => {
           const numericValue = e.currentTarget.value.replace(/[^0-9]/g, '');
@@ -58,8 +63,8 @@ export const MaterialInputField: React.FC<MaterialInputFieldProps> = ({
 
           const value = parseInt(numericValue || '0', 10);
           onInventoryChange(isNaN(value) ? 0 : value);
-          
-          // Update dynamic width as user types to match new content length
+
+           // Update dynamic width as user types to match new content length
           setDynamicWidth(Math.max(numericValue.length + 0.5, 1));
         }}
         onBlur={(e) => {
@@ -82,7 +87,16 @@ export const MaterialInputField: React.FC<MaterialInputFieldProps> = ({
         }}
         value={isEditing ? currentInventory.toString() : formatNumber(currentInventory)} 
       />
-      <span className="text-sm font-medium text-gray-300">/ {formatNumber(totalRequired)}</span>
+      <span 
+        className="text-sm font-bold text-gray-300"
+        style={{ 
+          verticalAlign: 'middle', 
+          lineHeight: '20px',
+          paddingLeft: '2px',
+        }} 
+      >
+        ⧸ {formatNumber(totalRequired)}
+      </span>
     </div>
   );
 };
