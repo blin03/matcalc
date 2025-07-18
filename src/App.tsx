@@ -488,7 +488,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Top Bar for Character and Weapon Selection */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
           <Dropdown
             label="Select Character"
             options={characters}
@@ -508,7 +508,7 @@ const App: React.FC = () => {
 
         {/* Level and Progression Section */}
         {selectedCharacterId || selectedWeaponId ? (
-          <div className={`bg-gray-800 p-8 rounded-2xl shadow-2xl mb-10 border ${getContainerBorderClass()}`}>
+          <div className={`bg-gray-800 p-8 rounded-2xl shadow-2xl mb-4 border ${getContainerBorderClass()}`}>
             <h2 className="text-3xl font-bold mb-6 text-white border-b-2 border-gray-700 pb-4">Progression</h2>
             <div className="flex flex-col gap-8">
               {/* Character and Weapon Level Panel */}

@@ -95,7 +95,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
               <Icon
                 src={selectedOption.icon}
                 alt={selectedOption.name}
-                className={`w-10 h-10 mr-2 rounded-full ${getRarityGlowClass(selectedOption.rarity)}`} // Apply glow here
+                className={`w-10 h-10 mr-2 rounded-full ${getRarityGlowClass(selectedOption.rarity)}`}
               />
             )}
             {selectedOption ? selectedOption.name : <span className="text-gray-400">{placeholder}</span>}
@@ -118,7 +118,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
         )}
       </div>
       {selectedOption?.prerelease && (
-        <p className="text-red-500 text-sm mt-2">
+        <p className="text-red-500 text-sm mt-2 pl-2">
           Warning: Selected option is pre-release and its materials are subject to change.
         </p>
       )}
