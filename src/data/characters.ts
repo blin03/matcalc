@@ -686,6 +686,23 @@ export const lupa: Character = createCharacter(
   }
 );
 
+export const phrolova: Character = createCharacter(
+  {
+    id: 'phrolova',
+    name: 'Phrolova',
+    rarity: 5,
+    icon: '/assets/icons/characters/phrolova.webp',
+    statNodeNames: ['Crit. Rate+', 'ATK+'],
+    prerelease: true,
+  },
+  {
+    ascension: { boss: BossMaterial.PHROLOVA_MAT, enemy: ENEMY_POLYGON, specialty: SpecialtyMaterial.BLOODLEAF_VIBURNUM },
+    skill: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_POLYGON, weekly: WeeklyBossMaterial.THE_NETHERWORLDS_STARE },
+    statNode: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_POLYGON, weekly: WeeklyBossMaterial.THE_NETHERWORLDS_STARE },
+    inherentSkill: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_POLYGON, weekly: WeeklyBossMaterial.THE_NETHERWORLDS_STARE },
+  }
+);
+
 export const characters: Character[] = [
   // v1.0
   roverSpectro,
@@ -742,4 +759,7 @@ export const characters: Character[] = [
   // v2.4
   cartethyia,
   lupa,
+
+  // v2.5
+  phrolova,
 ]

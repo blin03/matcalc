@@ -9,11 +9,17 @@ interface IconProps {
 
 export const Icon: React.FC<IconProps> = ({ name, src, alt, className }) => {
   if (src) {
+    // Fallback image if target cannot be loaded
+    const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+      e.currentTarget.src = "assets/icons/other/caterm.webp";
+    };
+
     return (
       <img
         src={src}
         alt={alt || 'icon'}
         className={`inline-block ${className}`}
+        onError={handleError}
       />
     );
   } else if (name) {

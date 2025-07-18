@@ -721,6 +721,19 @@ export const wildfireMark: Weapon = createWeapon(
   }
 );
 
+export const letheanElegy: Weapon = createWeapon(
+  {
+    id: 'lethean_elegy',
+    name: 'Lethean Elegy',
+    rarity: 5,
+    icon: '/assets/icons/weapons/lethean_elegy.webp',
+    prerelease: true,
+  },
+  {
+    ascension: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_RING }
+  }
+);
+
 export const weapons: Weapon[] = [
   // v1.0
   abyssSurges,
@@ -796,4 +809,7 @@ export const weapons: Weapon[] = [
   // v2.4
   defiersThorn,
   wildfireMark,
+
+  // v2.5
+  letheanElegy,
 ];

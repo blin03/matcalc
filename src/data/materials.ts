@@ -23,7 +23,10 @@ export enum BossMaterial {
   PLATINUM_CORE = "Platinum Core",
 
   // v2.4
-  UNFADING_GLORY = "Unfading Glory"
+  UNFADING_GLORY = "Unfading Glory",
+
+  // v2.5
+  PHROLOVA_MAT = "TBA"
 }
 
 // Enum for Common Enemy Materials
@@ -181,6 +184,7 @@ export const allMaterials: Material[] = [
   { name: BossMaterial.CLEANSING_CONCH, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.CLEANSING_CONCH) },
   { name: BossMaterial.PLATINUM_CORE, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.PLATINUM_CORE) },
   { name: BossMaterial.UNFADING_GLORY, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.UNFADING_GLORY) },
+  { name: BossMaterial.PHROLOVA_MAT, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.PHROLOVA_MAT) },
 
   // Enemy Materials (Tiered Rarities, Character Ascension)
   // LF (Rarity 2) -> MF (Rarity 3) -> HF (Rarity 4) -> FF (Rarity 5)

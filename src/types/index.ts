@@ -59,6 +59,7 @@ export interface Character {
   rarity: number;
   icon: string;
   statNodeNames?: string[];
+  prerelease?: boolean;
   materialMap: CharacterSpecificMaterialMap;
   ascensionMaterials: LevelRequirement[];
   skillMaterials: LevelRequirement[];
@@ -92,6 +93,7 @@ export interface Weapon {
   name: string;
   rarity: number;
   icon: string;
+  prerelease?: boolean;
   materialMap: WeaponSpecificMaterialMap;
   ascensionMaterials: LevelRequirement[];
   expMaterials: LevelRequirement[];

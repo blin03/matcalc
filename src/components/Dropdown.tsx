@@ -5,6 +5,7 @@ interface DropdownOption {
   id: string;
   name: string;
   icon?: string;
+  prerelease?: boolean;
 }
 
 interface DropdownProps {
@@ -93,6 +94,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
           </button>
         )}
       </div>
+      {selectedOption?.prerelease && (
+        <p className="text-red-500 text-sm mt-2">
+          Warning: Selected option is pre-release and its materials are subject to change.
+        </p>
+      )}
 
       {isOpen && (
         <div className="absolute z-10 w-full mt-2 bg-gray-800 rounded-xl shadow-lg border border-gray-700 max-h-80 overflow-y-auto">
