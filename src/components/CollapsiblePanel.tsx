@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 interface CollapsiblePanelProps {
-  title: string;
+  title: string | ReactNode;
   children: React.ReactNode;
   defaultOpen?: boolean;
   panelClassName?: string;
@@ -26,7 +26,12 @@ export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
         className="flex justify-between items-center p-4 cursor-pointer"
         onClick={togglePanel}
       >
-        <h3 className="text-xl font-semibold text-white">{title}</h3>
+
+        {typeof title === 'string' ? (
+          <h3 className="text-xl font-semibold text-white">{title}</h3>
+        ) : (
+          <div className="flex-grow">{title}</div>
+        )}
         {isOpen ? (
           <IoIosArrowUp className="text-white text-2xl" />
         ) : (

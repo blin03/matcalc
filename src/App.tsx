@@ -392,6 +392,11 @@ const App: React.FC = () => {
     }));
   };
 
+  // Function to clear all material inventory entries
+  const clearAllInventory = () => {
+    setMaterialInventory({});
+  };
+
   const skillLabels = ["Basic Attack", "Resonance Skill", "Forte Circuit", "Resonance Liberation", "Intro Skill"];
   const allowedLevels = [1, 20, 40, 50, 60, 70, 80, 90];
 
@@ -474,7 +479,7 @@ const App: React.FC = () => {
       <div className="max-w-7xl mx-auto relative">
         {/* Header with Title and GitHub Link */}
         <div className="flex flex-col md:flex-row items-center justify-center relative mb-12">
-          <h1 className="text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400 md:flex-grow">
+          <h1 className="text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400 md:flex-grow leading-normal">
             Wuthering Waves Material Planner
           </h1>
           <div className="mt-4 md:mt-0 md:absolute md:top-1/2 md:-translate-y-9/20 md:right-0 flex items-center text-gray-400">
@@ -614,7 +619,11 @@ const App: React.FC = () => {
             <>
               {/* Materials Needed Section */}
               {allMaterials.length > 0 && (
-                <CollapsiblePanel title="Materials Needed" defaultOpen={true} panelClassName={`bg-gray-900 border ${getContainerBorderClass()} rounded-xl mb-8`}>
+                <CollapsiblePanel
+                  title="Materials Needed"
+                  defaultOpen={true}
+                  panelClassName={`bg-gray-900 border ${getContainerBorderClass()} rounded-xl mb-8`}
+                >
                   <div className="p-5">
                     <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                       {sortedMaterials.map((mat, index) => {
@@ -640,6 +649,14 @@ const App: React.FC = () => {
                         );
                       })}
                     </ul>
+                    <div className="flex justify-center mt-6">
+                      <button
+                        onClick={clearAllInventory}
+                        className="text-sm bg-gray-700 hover:bg-red-700 text-white py-2 px-4 rounded-md transition-colors duration-200"
+                      >
+                        Clear All
+                      </button>
+                    </div>
                   </div>
                 </CollapsiblePanel>
               )}
