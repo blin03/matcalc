@@ -696,7 +696,7 @@ export const phrolova: Character = createCharacter(
     prerelease: true,
   },
   {
-    ascension: { boss: BossMaterial.PHROLOVA_MAT, enemy: ENEMY_POLYGON, specialty: SpecialtyMaterial.BLOODLEAF_VIBURNUM },
+    ascension: { boss: BossMaterial.TRUTH_IN_LIES, enemy: ENEMY_POLYGON, specialty: SpecialtyMaterial.AFTERLIFE },
     skill: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_POLYGON, weekly: WeeklyBossMaterial.THE_NETHERWORLDS_STARE },
     statNode: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_POLYGON, weekly: WeeklyBossMaterial.THE_NETHERWORLDS_STARE },
     inherentSkill: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_POLYGON, weekly: WeeklyBossMaterial.THE_NETHERWORLDS_STARE },

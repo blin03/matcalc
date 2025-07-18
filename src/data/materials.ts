@@ -26,7 +26,7 @@ export enum BossMaterial {
   UNFADING_GLORY = "Unfading Glory",
 
   // v2.5
-  PHROLOVA_MAT = "TBA"
+  TRUTH_IN_LIES = "Truth in Lies"
 }
 
 // Enum for Common Enemy Materials
@@ -155,7 +155,10 @@ export enum SpecialtyMaterial {
 
   // v2.4
   BAMBOO_IRIS = "Bamboo Iris",
-  BLOODLEAF_VIBURNUM = "Bloodleaf Viburnum"
+  BLOODLEAF_VIBURNUM = "Bloodleaf Viburnum",
+
+  // v2.5
+  AFTERLIFE = "Afterlife",
 }
 
 
@@ -184,7 +187,7 @@ export const allMaterials: Material[] = [
   { name: BossMaterial.CLEANSING_CONCH, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.CLEANSING_CONCH) },
   { name: BossMaterial.PLATINUM_CORE, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.PLATINUM_CORE) },
   { name: BossMaterial.UNFADING_GLORY, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.UNFADING_GLORY) },
-  { name: BossMaterial.PHROLOVA_MAT, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.PHROLOVA_MAT) },
+  { name: BossMaterial.TRUTH_IN_LIES, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.TRUTH_IN_LIES) },
 
   // Enemy Materials (Tiered Rarities, Character Ascension)
   // LF (Rarity 2) -> MF (Rarity 3) -> HF (Rarity 4) -> FF (Rarity 5)
@@ -287,6 +290,8 @@ export const allMaterials: Material[] = [
   { name: SpecialtyMaterial.SEASIDE_CENDRELIS, rarity: 1, type: 'character_ascension', icon: getIconPath('specialty', SpecialtyMaterial.SEASIDE_CENDRELIS) },
   { name: SpecialtyMaterial.BAMBOO_IRIS, rarity: 1, type: 'character_ascension', icon: getIconPath('specialty', SpecialtyMaterial.BAMBOO_IRIS) },
   { name: SpecialtyMaterial.BLOODLEAF_VIBURNUM, rarity: 1, type: 'character_ascension', icon: getIconPath('specialty', SpecialtyMaterial.BLOODLEAF_VIBURNUM) },
+  { name: SpecialtyMaterial.AFTERLIFE, rarity: 1, type: 'character_ascension', icon: getIconPath('specialty', SpecialtyMaterial.AFTERLIFE) },
+
 ];
 
 // Helper to get material details by name

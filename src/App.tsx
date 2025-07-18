@@ -472,19 +472,22 @@ const App: React.FC = () => {
   return (
     <div className="bg-gray-950 text-white min-h-screen p-8 font-sans">
       <div className="max-w-7xl mx-auto relative">
-        <h1 className="text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400">
-          Wuthering Waves Material Planner
-        </h1>
-        <div className="absolute top-2 right-2 flex items-center text-gray-400">
-          <span className="text-sm mr-2 whitespace-nowrap">Feedback or issues?</span>
-          <a
-            href="https://github.com/blin03/matcalc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-purple-400"
-          >
-            <img src={GITHUB_ICON_PATH} alt="GitHub" className="w-10 h-10" />
-          </a>
+        {/* Header with Title and GitHub Link */}
+        <div className="flex flex-col md:flex-row items-center justify-center relative mb-12">
+          <h1 className="text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400 md:flex-grow">
+            Wuthering Waves Material Planner
+          </h1>
+          <div className="mt-4 md:mt-0 md:absolute md:top-1/2 md:-translate-y-9/20 md:right-0 flex items-center text-gray-400">
+            <span className="text-sm mr-2 whitespace-nowrap">Feedback or issues?</span>
+            <a
+              href="https://github.com/blin03/matcalc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-purple-400"
+            >
+              <img src={GITHUB_ICON_PATH} alt="GitHub" className="w-10 h-10" />
+            </a>
+          </div>
         </div>
 
         {/* Top Bar for Character and Weapon Selection */}

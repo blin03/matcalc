@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 interface MaterialInputFieldProps {
   currentInventory: number;
@@ -23,79 +23,65 @@ export const MaterialInputField: React.FC<MaterialInputFieldProps> = ({
   onInventoryChange,
   formatNumber = formatNumberWithAbbreviation
 }) => {
-  const inputRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [dynamicWidth, setDynamicWidth] = useState(1); 
 
-  // Save and restore cursor position
-  const saveCursorPosition = () => {
-    if (!inputRef.current) return 0;
-    const selection = window.getSelection();
-    if (selection && selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0);
-      return range.startOffset;
+  // Effect to update the input value and calculate dynamic width
+  useEffect(() => {
+    if (inputRef.current) {
+      const valueToMeasure = isEditing ? currentInventory.toString() : formatNumber(currentInventory);
+      inputRef.current.value = valueToMeasure;
+      // Calculate dynamic width based on the current content length
+      setDynamicWidth(Math.max(valueToMeasure.length + 0.5, 1));
     }
-    return 0;
-  };
-
-  const restoreCursorPosition = (position: number) => {
-    if (!inputRef.current) return;
-    const selection = window.getSelection();
-    const range = document.createRange();
-    
-    const textLength = inputRef.current.textContent?.length || 0;
-    const safePosition = Math.min(position, textLength);
-    
-    if (inputRef.current.firstChild) {
-      range.setStart(inputRef.current.firstChild, safePosition);
-      range.setEnd(inputRef.current.firstChild, safePosition);
-      selection?.removeAllRanges();
-      selection?.addRange(range);
-    }
-  };
+  }, [currentInventory, isEditing, formatNumber]);
 
   return (
     <div className="inline-flex items-center justify-center mt-1 bg-gray-700 rounded-md py-1 px-2 border border-gray-600 material-input-container">
-      <div
+      <input
         ref={inputRef}
-        contentEditable
-        suppressContentEditableWarning={true}
-        className="bg-transparent text-white text-center font-bold text-sm focus:outline-none inline-block min-w-[1ch] max-w-[10ch] select-all"
-        style={{ padding: '2px 2px' }}
+        type="text"
+        inputMode="numeric"
+        pattern="[0-9]*"
+        className="bg-transparent text-white text-center font-bold text-sm focus:outline-none inline-block select-all"
+        style={{
+          padding: '2px 2px',
+          // Dynamically set both min-width and max-width to match dynamicWidth
+          minWidth: `${dynamicWidth}ch`,
+          maxWidth: `${dynamicWidth}ch`, 
+          transition: 'min-width 0.1s ease-out, max-width 0.1s ease-out'
+        }}
         onInput={(e) => {
-          const cursorPosition = saveCursorPosition();
-          const value = parseInt(e.currentTarget.textContent || '0', 10);
+          const numericValue = e.currentTarget.value.replace(/[^0-9]/g, '');
+          e.currentTarget.value = numericValue;
+
+          const value = parseInt(numericValue || '0', 10);
           onInventoryChange(isNaN(value) ? 0 : value);
           
-          // Restore cursor position after the state update
-          setTimeout(() => {
-            restoreCursorPosition(cursorPosition);
-          }, 0);
+          // Update dynamic width as user types to match new content length
+          setDynamicWidth(Math.max(numericValue.length + 0.5, 1));
         }}
         onBlur={(e) => {
-          // Clean up the content on blur to ensure it's a valid number
-          const value = parseInt(e.currentTarget.textContent || '0', 10);
+          const value = parseInt(e.currentTarget.value || '0', 10);
           const cleanValue = isNaN(value) ? 0 : value;
-          e.currentTarget.textContent = cleanValue.toString();
+          e.currentTarget.value = cleanValue.toString();
+          onInventoryChange(cleanValue);
           setIsEditing(false);
         }}
         onKeyDown={(e) => {
-          if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+          if (!/[0-9]/.test(e.key) && 
+              !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter'].includes(e.key) &&
+              !e.metaKey && !e.ctrlKey && !e.altKey) {
             e.preventDefault();
           }
         }}
         onFocus={(e) => {
           setIsEditing(true);
-          if (e.currentTarget.textContent !== '') {
-            const range = document.createRange();
-            const selection = window.getSelection();
-            range.selectNodeContents(e.currentTarget);
-            selection?.removeAllRanges();
-            selection?.addRange(range);
-          }
+          e.currentTarget.select();
         }}
-      >
-        {isEditing ? currentInventory : formatNumber(currentInventory)}
-      </div>
+        value={isEditing ? currentInventory.toString() : formatNumber(currentInventory)} 
+      />
       <span className="text-sm font-medium text-gray-300">/ {formatNumber(totalRequired)}</span>
     </div>
   );
