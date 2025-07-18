@@ -66,6 +66,7 @@ const formatWaveplateNumber = (num: number): string => {
 };
 
 const WAVEPLATE_ICON_PATH = getMaterialByName(Currency.WAVEPLATES)?.icon || '❓';
+const GITHUB_ICON_PATH = '/assets/icons/other/github-mark-white.svg';
 
 
 // Main App Component
@@ -470,10 +471,21 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-gray-950 text-white min-h-screen p-8 font-sans">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative">
         <h1 className="text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400">
           Wuthering Waves Material Planner
         </h1>
+        <div className="absolute top-2 right-2 flex items-center text-gray-400">
+          <span className="text-sm mr-2 whitespace-nowrap">Feedback or issues?</span>
+          <a
+            href="https://github.com/blin03/matcalc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-purple-400"
+          >
+            <img src={GITHUB_ICON_PATH} alt="GitHub" className="w-10 h-10" />
+          </a>
+        </div>
 
         {/* Top Bar for Character and Weapon Selection */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
@@ -637,7 +649,7 @@ const App: React.FC = () => {
                       <div className="flex flex-col items-center justify-center text-xl font-bold text-cyan-300 py-3 border-b border-gray-700 bg-gray-800 rounded-t-xl">
                         <div className="flex items-center">
                           <Icon src={WAVEPLATE_ICON_PATH} alt="Waveplates" className="w-6 h-6 mr-2" />
-                          <span className="mr-2">Total Waveplate Cost: {formatWaveplateNumber(totalStamina)}</span> {/* Use formatWaveplateNumber here */}
+                          <span className="mr-2">Total Waveplate Cost: {formatWaveplateNumber(totalStamina)}</span>
                           <span className="text-xl font-bold text-gray-400">({Math.ceil(totalStamina / 240)} Days)</span>
                         </div>
                         <p className="text-sm font-normal text-gray-400 mt-1">Estimations based on drop rate averages at UL70 and above.</p>
