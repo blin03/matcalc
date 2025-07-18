@@ -6,6 +6,7 @@ interface DropdownOption {
   name: string;
   icon?: string;
   prerelease?: boolean;
+  rarity?: number;
 }
 
 interface DropdownProps {
@@ -60,6 +61,24 @@ export const Dropdown: React.FC<DropdownProps> = ({
     };
   }, [handleClickOutside]);
 
+  // Helper function to get rarity glow class for icons
+  const getRarityGlowClass = (rarity?: number) => {
+    switch (rarity) {
+      case 1: // Gray
+        return 'border-2 border-gray-400 shadow-[0_0_8px_rgba(156,163,175,0.7)]';
+      case 2: // Green
+        return 'border-2 border-green-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]';
+      case 3: // Blue
+        return 'border-2 border-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.7)]';
+      case 4: // Purple
+        return 'border-2 border-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.7)]';
+      case 5: // Gold
+        return 'border-2 border-yellow-400 shadow-[0_0_8px_rgba(252,211,77,0.7)]';
+      default:
+        return '';
+    }
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       <h2 className="text-xl font-semibold mb-3 text-gray-300">{label}</h2>
@@ -73,7 +92,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
         >
           <span className="flex items-center">
             {selectedOption?.icon && (
-              <Icon src={selectedOption.icon} alt={selectedOption.name} className="w-10 h-10 mr-2 rounded-full" />
+              <Icon
+                src={selectedOption.icon}
+                alt={selectedOption.name}
+                className={`w-10 h-10 mr-2 rounded-full ${getRarityGlowClass(selectedOption.rarity)}`} // Apply glow here
+              />
             )}
             {selectedOption ? selectedOption.name : <span className="text-gray-400">{placeholder}</span>}
           </span>
@@ -81,7 +104,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
             <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
         </button>
-        {selectedValue && ( // Only show clear button if an option is selected
+        {selectedValue && (
           <button
             type="button"
             onClick={handleClear}
@@ -125,7 +148,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
                   onClick={() => handleSelect(option.id)}
                 >
                   {option.icon && (
-                    <Icon src={option.icon} alt={option.name} className="w-10 h-10 mr-3 rounded-full" />
+                    <Icon
+                      src={option.icon}
+                      alt={option.name}
+                      className={`w-10 h-10 mr-3 rounded-full ${getRarityGlowClass(option.rarity)}`} // Apply glow here
+                    />
                   )}
                   {option.name}
                 </li>
