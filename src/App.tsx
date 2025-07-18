@@ -70,30 +70,88 @@ const WAVEPLATE_ICON_PATH = getMaterialByName(Currency.WAVEPLATES)?.icon || '❓
 
 // Main App Component
 const App: React.FC = () => {
-  const [selectedCharacterId, setSelectedCharacterId] = useState<string>('');
-  const [selectedWeaponId, setSelectedWeaponId] = useState<string>('');
+  // LocalStorage caching
+  const LOCAL_STORAGE_KEY = 'wuwaMaterialPlannerState';
 
-  const [charCurrentLevel, setCharCurrentLevel] = useState<number>(1);
-  const [charTargetLevel, setCharTargetLevel] = useState<number>(90);
-  const [weaponCurrentLevel, setWeaponCurrentLevel] = useState<number>(1);
-  const [weaponTargetLevel, setWeaponTargetLevel] = useState<number>(90);
+  // Function to load state from localStorage
+  const loadState = () => {
+    try {
+      const serializedState = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (serializedState === null) {
+        return undefined;
+      }
+      return JSON.parse(serializedState);
+    } catch (err) {
+      console.error("Could not load state from localStorage", err);
+      return undefined;
+    }
+  };
 
-  const [skills, setSkills] = useState<number[]>(Array(5).fill(1));
-  const [targetSkills, setTargetSkills] = useState<number[]>(Array(5).fill(10));
+  const savedState = loadState();
 
-  const [statNodeBooleans, setStatNodeBooleans] = useState<boolean[][]>(Array(4).fill([true, true]));
-  const [inherentSkillBooleans, setInherentSkillBooleans] = useState<boolean[]>([true, true]);
 
+  // Initialization - load from saved state or use default values
+  const [selectedCharacterId, setSelectedCharacterId] = useState<string>(savedState?.selectedCharacterId || '');
+  const [selectedWeaponId, setSelectedWeaponId] = useState<string>(savedState?.selectedWeaponId || '');
+
+  const [charCurrentLevel, setCharCurrentLevel] = useState<number>(savedState?.charCurrentLevel || 1);
+  const [charTargetLevel, setCharTargetLevel] = useState<number>(savedState?.charTargetLevel || 90);
+  const [weaponCurrentLevel, setWeaponCurrentLevel] = useState<number>(savedState?.weaponCurrentLevel || 1);
+  const [weaponTargetLevel, setWeaponTargetLevel] = useState<number>(savedState?.weaponTargetLevel || 90);
+
+  const [skills, setSkills] = useState<number[]>(savedState?.skills || Array(5).fill(1));
+  const [targetSkills, setTargetSkills] = useState<number[]>(savedState?.targetSkills || Array(5).fill(10));
+
+  const [statNodeBooleans, setStatNodeBooleans] = useState<boolean[][]>(savedState?.statNodeBooleans || Array(4).fill([true, true]));
+  const [inherentSkillBooleans, setInherentSkillBooleans] = useState<boolean[]>(savedState?.inherentSkillBooleans || [true, true]);
+
+  const [materialInventory, setMaterialInventory] = useState<{ [materialName: string]: number }>(savedState?.materialInventory || {});
+  
+  // Recalculate from cached state
   const [allMaterials, setAllMaterials] = useState<CalculatedMaterial[]>([]);
-
-  const [materialInventory, setMaterialInventory] = useState<{ [materialName: string]: number }>({});
   const [totalStamina, setTotalStamina] = useState<number>(0);
+
+  // Effect to save state to localStorage whenever a persisted state value changes
+  useEffect(() => {
+    try {
+      const stateToSave = {
+        selectedCharacterId,
+        selectedWeaponId,
+        charCurrentLevel,
+        charTargetLevel,
+        weaponCurrentLevel,
+        weaponTargetLevel,
+        skills,
+        targetSkills,
+        statNodeBooleans,
+        inherentSkillBooleans,
+        materialInventory,
+      };
+      const serializedState = JSON.stringify(stateToSave);
+      localStorage.setItem(LOCAL_STORAGE_KEY, serializedState);
+    } catch (err) {
+      console.error("Could not save state to localStorage", err);
+    }
+  }, [
+    selectedCharacterId,
+    selectedWeaponId,
+    charCurrentLevel,
+    charTargetLevel,
+    weaponCurrentLevel,
+    weaponTargetLevel,
+    skills,
+    targetSkills,
+    statNodeBooleans,
+    inherentSkillBooleans,
+    materialInventory,
+  ]);
 
   const selectedCharacter: Character | undefined = characters.find(
     (char) => char.id === selectedCharacterId
   );
   const selectedWeapon = weapons.find((w) => w.id === selectedWeaponId);
 
+  // Effect for calculating materials
   useEffect(() => {
     // Character Materials
     const characterAscensionMaterials = selectedCharacter ? calculateMaterials(selectedCharacter, charCurrentLevel, charTargetLevel, 'ascension') : [];
@@ -173,6 +231,8 @@ const App: React.FC = () => {
     statNodeBooleans,
     inherentSkillBooleans,
     materialInventory,
+    selectedCharacter,
+    selectedWeapon,
   ]);
 
   // Sort order based on material category
