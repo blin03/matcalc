@@ -94,6 +94,7 @@ const App: React.FC = () => {
   // Initialization - load from saved state or use default values
   const [selectedCharacterId, setSelectedCharacterId] = useState<string>(savedState?.selectedCharacterId || '');
   const [selectedWeaponId, setSelectedWeaponId] = useState<string>(savedState?.selectedWeaponId || '');
+  const [filterWeaponsByType, setFilterWeaponsByType] = useState<boolean>(savedState?.filterWeaponsByType || true);
 
   const [charCurrentLevel, setCharCurrentLevel] = useState<number>(savedState?.charCurrentLevel || 1);
   const [charTargetLevel, setCharTargetLevel] = useState<number>(savedState?.charTargetLevel || 90);
@@ -107,7 +108,7 @@ const App: React.FC = () => {
   const [inherentSkillBooleans, setInherentSkillBooleans] = useState<boolean[]>(savedState?.inherentSkillBooleans || [true, true]);
 
   const [materialInventory, setMaterialInventory] = useState<{ [materialName: string]: number }>(savedState?.materialInventory || {});
-  
+
   // Recalculate from cached state
   const [allMaterials, setAllMaterials] = useState<CalculatedMaterial[]>([]);
   const [totalStamina, setTotalStamina] = useState<number>(0);
@@ -118,6 +119,7 @@ const App: React.FC = () => {
       const stateToSave = {
         selectedCharacterId,
         selectedWeaponId,
+        filterWeaponsByType,
         charCurrentLevel,
         charTargetLevel,
         weaponCurrentLevel,
@@ -136,6 +138,7 @@ const App: React.FC = () => {
   }, [
     selectedCharacterId,
     selectedWeaponId,
+    filterWeaponsByType,
     charCurrentLevel,
     charTargetLevel,
     weaponCurrentLevel,
@@ -151,6 +154,11 @@ const App: React.FC = () => {
     (char) => char.id === selectedCharacterId
   );
   const selectedWeapon = weapons.find((w) => w.id === selectedWeaponId);
+
+  // Filtered weapons based on character type and toggle
+  const filteredWeapons = selectedCharacter && filterWeaponsByType
+    ? weapons.filter(weapon => weapon.type === selectedCharacter.type)
+    : weapons;
 
   // Effect for calculating materials
   useEffect(() => {
@@ -497,6 +505,7 @@ const App: React.FC = () => {
 
         {/* Top Bar for Character and Weapon Selection */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
+          {/* Character Dropdown */}
           <Dropdown
             label="Select Character"
             options={characters}
@@ -505,13 +514,36 @@ const App: React.FC = () => {
             placeholder="-- Select a Character --"
           />
 
-          <Dropdown
-            label="Select Weapon"
-            options={weapons}
-            selectedValue={selectedWeaponId}
-            onSelect={setSelectedWeaponId}
-            placeholder="-- Select a Weapon --"
-          />
+          {/* Weapon Dropdown */}
+          <div className="relative">
+            <Dropdown
+              label="Select Weapon"
+              options={filteredWeapons}
+              selectedValue={selectedWeaponId}
+              onSelect={setSelectedWeaponId}
+              placeholder="-- Select a Weapon --"
+            />
+            <div className="absolute top-1.5 right-2 flex items-center"> {/* absolute positioning because idk how else to make this work */}
+                <label htmlFor="filter-weapon-type" className="mr-3 text-white font-medium text-sm">
+                  Filter by Character Type
+                </label>
+                <input
+                  type="checkbox"
+                  id="filter-weapon-type"
+                  checked={filterWeaponsByType}
+                  onChange={(e) => setFilterWeaponsByType(e.target.checked)}
+                  className="
+                    relative w-10 h-5
+                    appearance-none bg-gray-600 rounded-full shadow-inner
+                    cursor-pointer transition-colors duration-300 ease-in-out
+                    hover:ring-2 hover:ring-[#d1d5db] hover:ring-opacity-100
+                    before:content-[''] before:absolute before:top-0.5 before:left-0.5 before:w-4 before:h-4 before:bg-white before:rounded-full before:shadow-md before:shadow-lg
+                    before:transition-transform before:duration-300 before:ease-in-out
+                    checked:bg-[#a78bfa] checked:before:translate-x-5
+                "
+                />
+              </div>
+          </div>
         </div>
 
         {/* Level and Progression Section */}

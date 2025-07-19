@@ -1,4 +1,4 @@
-import { Weapon, WeaponSpecificMaterialMap } from '../types';
+import { Weapon, WeaponSpecificMaterialMap, WeaponType } from '../types';
 import { ASCENSION_TEMPLATES, EXP_TEMPLATES, applyTemplate } from './templates';
 import { ExpMaterial, Currency } from './materials';
 import { FORGERY_SWORD, FORGERY_PISTOL, FORGERY_RECTIFIER, FORGERY_BROADBLADE, FORGERY_GAUNTLETS,
@@ -53,6 +53,7 @@ export const abyssSurges: Weapon = createWeapon(
   {
     id: 'abyss_surges',
     name: 'Abyss Surges',
+    type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/weapons/abyss_surges.webp',
   },
@@ -65,6 +66,7 @@ export const amityAccord: Weapon = createWeapon(
   {
     id: 'amity_accord',
     name: 'Amity Accord',
+    type: WeaponType.GAUNTLETS,
     rarity: 4,
     icon: '/assets/icons/weapons/amity_accord.webp',
   },
@@ -77,6 +79,7 @@ export const augment: Weapon = createWeapon(
   {
     id: 'augment',
     name: 'Augment',
+    type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/weapons/augment.webp',
   },
@@ -89,6 +92,7 @@ export const autumntrace: Weapon = createWeapon(
   {
     id: 'autumntrace',
     name: 'Autumntrace',
+    type: WeaponType.BROADBLADE,
     rarity: 4,
     icon: '/assets/icons/weapons/autumntrace.webp',
   },
@@ -101,6 +105,7 @@ export const cadenza: Weapon = createWeapon(
   {
     id: 'cadenza',
     name: 'Cadenza',
+    type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/weapons/cadenza.webp',
   },
@@ -113,6 +118,7 @@ export const cometFlare: Weapon = createWeapon(
   {
     id: 'comet_flare',
     name: 'Comet Flare',
+    type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/weapons/comet_flare.webp',
   },
@@ -125,6 +131,7 @@ export const commandoOfConviction: Weapon = createWeapon(
   {
     id: 'commando_of_conviction',
     name: 'Commando of Conviction',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/weapons/commando_of_conviction.webp',
   },
@@ -137,6 +144,7 @@ export const cosmicRipples: Weapon = createWeapon(
   {
     id: 'cosmic_ripples',
     name: 'Cosmic Ripples',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/weapons/cosmic_ripples.webp',
   },
@@ -149,6 +157,7 @@ export const dauntlessEvernight: Weapon = createWeapon(
   {
     id: 'dauntless_evernight',
     name: 'Dauntless Evernight',
+    type: WeaponType.BROADBLADE,
     rarity: 4,
     icon: '/assets/icons/weapons/dauntless_evernight.webp',
   },
@@ -161,6 +170,7 @@ export const discord: Weapon = createWeapon(
   {
     id: 'discord',
     name: 'Discord',
+    type: WeaponType.BROADBLADE,
     rarity: 4,
     icon: '/assets/icons/weapons/discord.webp',
   },
@@ -173,6 +183,7 @@ export const emeraldOfGenesis: Weapon = createWeapon(
   {
     id: 'emerald_of_genesis',
     name: 'Emerald of Genesis',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/weapons/emerald_of_genesis.webp',
   },
@@ -185,6 +196,7 @@ export const heliosCleaver: Weapon = createWeapon(
   {
     id: 'helios_cleaver',
     name: 'Helios Cleaver',
+    type: WeaponType.BROADBLADE,
     rarity: 4,
     icon: '/assets/icons/weapons/helios_cleaver.webp',
   },
@@ -197,6 +209,7 @@ export const hollowMirage: Weapon = createWeapon(
   {
     id: 'hollow_mirage',
     name: 'Hollow Mirage',
+    type: WeaponType.GAUNTLETS,
     rarity: 4,
     icon: '/assets/icons/weapons/hollow_mirage.webp',
   },
@@ -209,6 +222,7 @@ export const jinzhouKeeper: Weapon = createWeapon(
   {
     id: 'jinzhou_keeper',
     name: 'Jinzhou Keeper',
+    type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/weapons/dauntless_evernight.webp',
   },
@@ -221,6 +235,7 @@ export const lumingloss: Weapon = createWeapon(
   {
     id: 'lumingloss',
     name: 'Lumingloss',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/weapons/lumingloss.webp',
   },
@@ -233,6 +248,7 @@ export const lunarCutter: Weapon = createWeapon(
   {
     id: 'lunar_cutter',
     name: 'Lunar Cutter',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/weapons/lunar_cutter.webp',
   },
@@ -245,6 +261,7 @@ export const lustrousRazor: Weapon = createWeapon(
   {
     id: 'lustrous_razor',
     name: 'Lustrous Razor',
+    type: WeaponType.BROADBLADE,
     rarity: 5,
     icon: '/assets/icons/weapons/lustrous_razor.webp',
   },
@@ -257,6 +274,7 @@ export const marcato: Weapon = createWeapon(
   {
     id: 'marcato',
     name: 'Marcato',
+    type: WeaponType.GAUNTLETS,
     rarity: 4,
     icon: '/assets/icons/weapons/marcato.webp',
   },
@@ -269,6 +287,7 @@ export const novaburst: Weapon = createWeapon(
   {
     id: 'novaburst',
     name: 'Novaburst',
+    type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/weapons/novaburst.webp',
   },
@@ -281,6 +300,7 @@ export const overture: Weapon = createWeapon(
   {
     id: 'overture',
     name: 'Overture',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/weapons/overture.webp',
   },
@@ -293,6 +313,7 @@ export const staticMist: Weapon = createWeapon(
   {
     id: 'static_mist',
     name: 'Static Mist',
+    type: WeaponType.PISTOL,
     rarity: 5,
     icon: '/assets/icons/weapons/static_mist.webp',
   },
@@ -305,6 +326,7 @@ export const stonard: Weapon = createWeapon(
   {
     id: 'stonard',
     name: 'Stonard',
+    type: WeaponType.GAUNTLETS,
     rarity: 4,
     icon: '/assets/icons/weapons/stonard.webp',
   },
@@ -317,6 +339,7 @@ export const stringmaster: Weapon = createWeapon(
   {
     id: 'stringmaster',
     name: 'Stringmaster',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/weapons/stringmaster.webp',
   },
@@ -329,6 +352,7 @@ export const thunderbolt: Weapon = createWeapon(
   {
     id: 'thunderbolt',
     name: 'Thunderbolt',
+    type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/weapons/thunderbolt.webp',
   },
@@ -341,6 +365,7 @@ export const undyingFlame: Weapon = createWeapon(
   {
     id: 'undying_flame',
     name: 'Undying Flame',
+    type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/weapons/undying_flame.webp',
   },
@@ -353,6 +378,7 @@ export const variation: Weapon = createWeapon(
   {
     id: 'variation',
     name: 'Variation',
+    type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/weapons/variation.webp',
   },
@@ -365,6 +391,7 @@ export const verdantSummit: Weapon = createWeapon(
   {
     id: 'verdant_summit',
     name: 'Verdant Summit',
+    type: WeaponType.BROADBLADE,
     rarity: 5,
     icon: '/assets/icons/weapons/verdant_summit.webp',
   },
@@ -377,6 +404,7 @@ export const agesOfHarvest: Weapon = createWeapon(
   {
     id: 'ages_of_harvest',
     name: 'Ages of Harvest',
+    type: WeaponType.BROADBLADE,
     rarity: 5,
     icon: '/assets/icons/weapons/ages_of_harvest.webp',
   },
@@ -389,6 +417,7 @@ export const blazingBrilliance: Weapon = createWeapon(
   {
     id: 'blazing_brilliance',
     name: 'Blazing Brilliance',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/weapons/blazing_brilliance.webp',
   },
@@ -401,6 +430,7 @@ export const rimeDrapedSprouts: Weapon = createWeapon(
   {
     id: 'rime_draped_sprouts',
     name: 'Rime-Draped Sprouts',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/weapons/rime_draped_sprouts.webp',
   },
@@ -413,6 +443,7 @@ export const veritysHandle: Weapon = createWeapon(
   {
     id: 'veritys_handle',
     name: "Verity's Handle",
+    type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/weapons/veritys_handle.webp',
   },
@@ -425,6 +456,7 @@ export const stellarSymphony: Weapon = createWeapon(
   {
     id: 'stellar_symphony',
     name: 'Stellar Symphony',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/weapons/stellar_symphony.webp',
   },
@@ -437,6 +469,7 @@ export const waningRedshift: Weapon = createWeapon(
   {
     id: 'waning_redshift',
     name: 'Waning Redshift',
+    type: WeaponType.BROADBLADE,
     rarity: 4,
     icon: '/assets/icons/weapons/waning_redshift.webp',
   },
@@ -449,6 +482,7 @@ export const endlessCollapse: Weapon = createWeapon(
   {
     id: 'endless_collapse',
     name: 'Endless Collapse',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/weapons/endless_collapse.webp',
   },
@@ -461,6 +495,7 @@ export const relativisticJet: Weapon = createWeapon(
   {
     id: 'relativistic_jet',
     name: 'Relativistic Jet',
+    type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/weapons/relativistic_jet.webp',
   },
@@ -473,6 +508,7 @@ export const celestialSpiral: Weapon = createWeapon(
   {
     id: 'celestial_spiral',
     name: 'Celestial Spiral',
+    type: WeaponType.GAUNTLETS,
     rarity: 4,
     icon: '/assets/icons/weapons/celestial_spiral.webp',
   },
@@ -485,6 +521,7 @@ export const fusionAccretion: Weapon = createWeapon(
   {
     id: 'fusion_accretion',
     name: 'Fusion Accretion',
+    type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/weapons/fusion_accretion.webp',
   },
@@ -497,6 +534,7 @@ export const redSpring: Weapon = createWeapon(
   {
     id: 'red_spring',
     name: 'Red Spring',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/weapons/red_spring.webp',
   },
@@ -509,6 +547,7 @@ export const somnoireAnchor: Weapon = createWeapon(
   {
     id: 'somnoire_anchor',
     name: 'Somnoire Anchor',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/weapons/somnoire_anchor.webp',
   },
@@ -521,6 +560,7 @@ export const theLastDance: Weapon = createWeapon(
   {
     id: 'the_last_dance',
     name: 'The Last Dance',
+    type: WeaponType.PISTOL,
     rarity: 5,
     icon: '/assets/icons/weapons/the_last_dance.webp',
   },
@@ -533,6 +573,7 @@ export const tragicomedy: Weapon = createWeapon(
   {
     id: 'tragicomedy',
     name: 'Tragicomedy',
+    type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/weapons/tragicomedy.webp',
   },
@@ -545,6 +586,7 @@ export const callOfTheAbyss: Weapon = createWeapon(
   {
     id: 'call_of_the_abyss',
     name: 'Call of the Abyss',
+    type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/weapons/call_of_the_abyss.webp',
   },
@@ -556,7 +598,8 @@ export const callOfTheAbyss: Weapon = createWeapon(
 export const meditationsOnMercy: Weapon = createWeapon(
   {
     id: 'meditationsOnMercy',
-    name: 'Meditations On Mercy',
+    name: 'Meditations on Mercy',
+    type: WeaponType.BROADBLADE,
     rarity: 4,
     icon: '/assets/icons/weapons/meditations_on_mercy.webp',
   },
@@ -569,6 +612,7 @@ export const legendOfDrunkenHero: Weapon = createWeapon(
   {
     id: 'legend_of_drunken_hero',
     name: 'Legend of Drunken Hero',
+    type: WeaponType.GAUNTLETS,
     rarity: 4,
     icon: '/assets/icons/weapons/legend_of_drunken_hero.webp',
   },
@@ -581,6 +625,7 @@ export const romanceInFarewell: Weapon = createWeapon(
   {
     id: 'romance_in_farewell',
     name: 'Romance in Farewell',
+    type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/weapons/romance_in_farewell.webp',
   },
@@ -593,6 +638,7 @@ export const waltzInMasquerade: Weapon = createWeapon(
   {
     id: 'waltz_in_masquerade',
     name: 'Waltz in Masquerade',
+    type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/weapons/waltz_in_masquerade.webp',
   },
@@ -605,6 +651,7 @@ export const fablesOfWisdom: Weapon = createWeapon(
   {
     id: 'fables_of_wisdom',
     name: 'Fables of Wisdom',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/weapons/fables_of_wisdom.webp',
   },
@@ -617,6 +664,7 @@ export const luminousHymn: Weapon = createWeapon(
   {
     id: 'luminous_hymn',
     name: 'Luminous Hymn',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/weapons/luminous_hymn.webp',
   },
@@ -629,6 +677,7 @@ export const unflickeringValor: Weapon = createWeapon(
   {
     id: 'unflickering_valor',
     name: 'Unflickering Valor',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/weapons/unflickering_valor.webp',
   },
@@ -641,6 +690,7 @@ export const oceansGift: Weapon = createWeapon(
   {
     id: 'oceans_gift',
     name: "Ocean's Gift",
+    type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/weapons/oceans_gift.webp',
   },
@@ -653,6 +703,7 @@ export const whispersOfSirens: Weapon = createWeapon(
   {
     id: 'whispers_of_sirens',
     name: 'Whispers of Sirens',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/weapons/whispers_of_sirens.webp',
   },
@@ -665,6 +716,7 @@ export const bloodpactsPledge: Weapon = createWeapon(
   {
     id: 'bloodpacts_pledge',
     name: "Bloodpact's Pledge",
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/weapons/bloodpacts_pledge.webp',
   },
@@ -677,6 +729,7 @@ export const blazingJustice: Weapon = createWeapon(
   {
     id: 'blazing_justice',
     name: 'Blazing Justice',
+    type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/weapons/blazing_justice.webp',
   },
@@ -689,6 +742,7 @@ export const woodlandAria: Weapon = createWeapon(
   {
     id: 'woodland_aria',
     name: 'Woodland Aria',
+    type: WeaponType.PISTOL,
     rarity: 5,
     icon: '/assets/icons/weapons/woodland_aria.webp',
   },
@@ -701,6 +755,7 @@ export const defiersThorn: Weapon = createWeapon(
   {
     id: 'defiers_thorn',
     name: "Defier's Thorn",
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/weapons/defiers_thorn.webp',
   },
@@ -713,6 +768,7 @@ export const wildfireMark: Weapon = createWeapon(
   {
     id: 'wildfire_mark',
     name: 'Wildfire Mark',
+    type: WeaponType.BROADBLADE,
     rarity: 5,
     icon: '/assets/icons/weapons/wildfire_mark.webp',
   },
@@ -725,6 +781,7 @@ export const letheanElegy: Weapon = createWeapon(
   {
     id: 'lethean_elegy',
     name: 'Lethean Elegy',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/weapons/lethean_elegy.webp',
     prerelease: true,

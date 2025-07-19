@@ -1,4 +1,4 @@
-import { Character, CharacterSpecificMaterialMap } from '../types';
+import { Character, CharacterSpecificMaterialMap, WeaponType } from '../types';
 import {
   ASCENSION_TEMPLATES, EXP_TEMPLATES, SKILL_TEMPLATES, applyTemplate } from './templates';
 import { BossMaterial, SpecialtyMaterial, ExpMaterial, Currency, WeeklyBossMaterial } from './materials';
@@ -93,6 +93,7 @@ export const roverSpectro: Character = createCharacter(
   {
     id: 'rover_spectro',
     name: 'Rover (Spectro)',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/characters/rover.webp',
     statNodeNames: ['Spectro DMG+', 'ATK+'],
@@ -116,6 +117,7 @@ export const roverHavoc: Character = createCharacter(
   {
     id: 'rover_havoc',
     name: 'Rover (Havoc)',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/characters/rover.webp',
     statNodeNames: ['Havoc DMG+', 'ATK+'],
@@ -139,6 +141,7 @@ export const calcharo: Character = createCharacter(
   {
     id: 'calcharo',
     name: 'Calcharo',
+    type: WeaponType.BROADBLADE,
     rarity: 5,
     icon: '/assets/icons/characters/calcharo.webp',
     statNodeNames: ['Crit. DMG+', 'ATK+'],
@@ -155,6 +158,7 @@ export const encore: Character = createCharacter(
   {
     id: 'encore',
     name: 'Encore',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/characters/encore.webp',
     statNodeNames: ['Fusion DMG+', 'ATK+'],
@@ -171,6 +175,7 @@ export const jianxin: Character = createCharacter(
   {
     id: 'jianxin',
     name: 'Jianxin',
+    type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/characters/jianxin.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -187,6 +192,7 @@ export const lingyang: Character = createCharacter(
   {
     id: 'lingyang',
     name: 'Lingyang',
+    type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/characters/lingyang.webp',
     statNodeNames: ['Glacio DMG+', 'ATK+'],
@@ -203,6 +209,7 @@ export const verina: Character = createCharacter(
   {
     id: 'verina',
     name: 'Verina',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/characters/verina.webp',
     statNodeNames: ['Healing Bonus+', 'ATK+'],
@@ -219,6 +226,7 @@ export const jiyan: Character = createCharacter(
   {
     id: 'jiyan',
     name: 'Jiyan',
+    type: WeaponType.BROADBLADE,
     rarity: 5,
     icon: '/assets/icons/characters/jiyan.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -235,6 +243,7 @@ export const yinlin: Character = createCharacter(
   {
     id: 'yinlin',
     name: 'Yinlin',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/characters/yinlin.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -251,6 +260,7 @@ export const aalto: Character = createCharacter(
   {
     id: 'aalto',
     name: 'Aalto',
+    type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/characters/aalto.webp',
     statNodeNames: ['Aero DMG+', 'ATK+'],
@@ -267,6 +277,7 @@ export const baizhi: Character = createCharacter(
   {
     id: 'baizhi',
     name: 'Baizhi',
+    type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/characters/baizhi.webp',
     statNodeNames: ['Healing Bonus+', 'HP+'],
@@ -283,6 +294,7 @@ export const chixia: Character = createCharacter(
   {
     id: 'chixia',
     name: 'Chixia',
+    type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/characters/chixia.webp',
     statNodeNames: ['Fusion DMG+', 'ATK+'],
@@ -299,6 +311,7 @@ export const danjin: Character = createCharacter(
   {
     id: 'danjin',
     name: 'Danjin',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/characters/danjin.webp',
     statNodeNames: ['Havoc DMG+', 'ATK+'],
@@ -315,6 +328,7 @@ export const mortefi: Character = createCharacter(
   {
     id: 'mortefi',
     name: 'Mortefi',
+    type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/characters/mortefi.webp',
     statNodeNames: ['Fusion DMG+', 'ATK+'],
@@ -331,6 +345,7 @@ export const sanhua: Character = createCharacter(
   {
     id: 'sanhua',
     name: 'Sanhua',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/characters/sanhua.webp',
     statNodeNames: ['Glacio DMG+', 'ATK+'],
@@ -347,6 +362,7 @@ export const taoqi: Character = createCharacter(
   {
     id: 'taoqi',
     name: 'Taoqi',
+    type: WeaponType.BROADBLADE,
     rarity: 4,
     icon: '/assets/icons/characters/taoqi.webp',
     statNodeNames: ['Havoc DMG+', 'DEF+'],
@@ -363,6 +379,7 @@ export const yangyang: Character = createCharacter(
   {
     id: 'yangyang',
     name: 'Yangyang',
+    type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/characters/yangyang.webp',
     statNodeNames: ['Aero DMG+', 'ATK+'],
@@ -379,6 +396,7 @@ export const yuanwu: Character = createCharacter(
   {
     id: 'yuanwu',
     name: 'Yuanwu',
+    type: WeaponType.GAUNTLETS,
     rarity: 4,
     icon: '/assets/icons/characters/yuanwu.webp',
     statNodeNames: ['Electro DMG+', 'DEF+'],
@@ -395,6 +413,7 @@ export const jinhsi: Character = createCharacter(
   {
     id: 'jinhsi',
     name: 'Jinhsi',
+    type: WeaponType.BROADBLADE,
     rarity: 5,
     icon: '/assets/icons/characters/jinhsi.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -411,6 +430,7 @@ export const changli: Character = createCharacter(
   {
     id: 'changli',
     name: 'Changli',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/characters/changli.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -427,6 +447,7 @@ export const zhezhi: Character = createCharacter(
   {
     id: 'zhezhi',
     name: 'Zhezhi',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/characters/zhezhi.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -443,6 +464,7 @@ export const xiangliYao: Character = createCharacter(
   {
     id: 'xiangli_yao',
     name: 'Xiangli Yao',
+    type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/characters/xiangli_yao.webp',
     statNodeNames: ['Crit. DMG+', 'ATK+'],
@@ -459,6 +481,7 @@ export const shorekeeper: Character = createCharacter(
   {
     id: 'shorekeeper',
     name: 'Shorekeeper',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/characters/shorekeeper.webp',
     statNodeNames: ['Healing Bonus+', 'HP+'],
@@ -475,6 +498,7 @@ export const youhu: Character = createCharacter(
   {
     id: 'youhu',
     name: 'Youhu',
+    type: WeaponType.GAUNTLETS,
     rarity: 4,
     icon: '/assets/icons/characters/youhu.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -491,6 +515,7 @@ export const camellya: Character = createCharacter(
   {
     id: 'camellya',
     name: 'Camellya',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/characters/camellya.webp',
     statNodeNames: ['Crit. DMG+', 'ATK+'],
@@ -507,6 +532,7 @@ export const lumi: Character = createCharacter(
   {
     id: 'lumi',
     name: 'Lumi',
+    type: WeaponType.BROADBLADE,
     rarity: 4,
     icon: '/assets/icons/characters/lumi.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -523,6 +549,7 @@ export const carlotta: Character = createCharacter(
   {
     id: 'carlotta',
     name: 'Carlotta',
+    type: WeaponType.PISTOL,
     rarity: 5,
     icon: '/assets/icons/characters/carlotta.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -539,6 +566,7 @@ export const roccia: Character = createCharacter(
   {
     id: 'roccia',
     name: 'Roccia',
+    type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/characters/roccia.webp',
     statNodeNames: ['Crit. DMG+', 'ATK+'],
@@ -555,6 +583,7 @@ export const phoebe: Character = createCharacter(
   {
     id: 'phoebe',
     name: 'Phoebe',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/characters/phoebe.webp',
     statNodeNames: ['Crit. DMG+', 'ATK+'],
@@ -571,6 +600,7 @@ export const brant: Character = createCharacter(
   {
     id: 'brant',
     name: 'Brant',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/characters/brant.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -587,6 +617,7 @@ export const roverAero: Character = createCharacter(
   {
     id: 'rover_aero',
     name: 'Rover (Aero)',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/characters/rover.webp',
     statNodeNames: ['Healing Bonus+', 'ATK+'],
@@ -610,6 +641,7 @@ export const cantarella: Character = createCharacter(
   {
     id: 'cantarella',
     name: 'Cantarella',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/characters/cantarella.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -626,6 +658,7 @@ export const zani: Character = createCharacter(
   {
     id: 'zani',
     name: 'Zani',
+    type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/characters/zani.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -642,6 +675,7 @@ export const ciaccona: Character = createCharacter(
   {
     id: 'ciaccona',
     name: 'Ciaccona',
+    type: WeaponType.PISTOL,
     rarity: 5,
     icon: '/assets/icons/characters/ciaccona.webp',
     statNodeNames: ['Crit. DMG+', 'ATK+'],
@@ -658,6 +692,7 @@ export const cartethyia: Character = createCharacter(
   {
     id: 'cartethyia',
     name: 'Cartethyia',
+    type: WeaponType.SWORD,
     rarity: 5,
     icon: '/assets/icons/characters/cartethyia.webp',
     statNodeNames: ['Crit. Rate+', 'HP+'],
@@ -674,6 +709,7 @@ export const lupa: Character = createCharacter(
   {
     id: 'lupa',
     name: 'Lupa',
+    type: WeaponType.BROADBLADE,
     rarity: 5,
     icon: '/assets/icons/characters/lupa.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
@@ -690,6 +726,7 @@ export const phrolova: Character = createCharacter(
   {
     id: 'phrolova',
     name: 'Phrolova',
+    type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/characters/phrolova.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],

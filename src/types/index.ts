@@ -6,6 +6,14 @@ export enum MaterialRarity {
   FIVE_STAR = 5,
 }
 
+export enum WeaponType {
+  SWORD = 'Sword',
+  PISTOL = 'Pistol',
+  RECTIFIER = 'Rectifier',
+  BROADBLADE = 'Broadblade',
+  GAUNTLETS = 'Gauntlets',
+}
+
 // Define types for materials, characters, weapons, echoes, and levels
 export interface Material {
   name: string;
@@ -56,6 +64,7 @@ export interface CharacterSpecificMaterialMap {
 export interface Character {
   id: string;
   name: string;
+  type: WeaponType;
   rarity: number;
   icon: string;
   statNodeNames?: string[];
@@ -91,6 +100,7 @@ export interface WeaponSpecificMaterialMap {
 export interface Weapon {
   id: string;
   name: string;
+  type: WeaponType;
   rarity: number;
   icon: string;
   prerelease?: boolean;
