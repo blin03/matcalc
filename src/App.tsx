@@ -490,7 +490,7 @@ const App: React.FC = () => {
           <h1 className="text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400 md:flex-grow leading-normal">
             Wuthering Waves Material Planner
           </h1>
-          <div className="mt-4 md:mt-0 md:absolute md:top-1/2 md:-translate-y-9/20 md:right-0 flex items-center text-gray-400">
+          <div className="mt-4 md:mt-0 md:absolute md:top-1/2 md:-translate-y-9/20 md:right-0 flex items-center text-gray-300">
             <span className="text-sm mr-2 whitespace-nowrap">Feedback or issues?</span>
             <a
               href="https://github.com/blin03/matcalc"
@@ -524,7 +524,7 @@ const App: React.FC = () => {
               placeholder="-- Select a Weapon --"
             />
             <div className="absolute top-1.5 right-2 flex items-center"> {/* absolute positioning because idk how else to make this work */}
-                <label htmlFor="filter-weapon-type" className="mr-3 text-white font-medium text-sm">
+                <label htmlFor="filter-weapon-type" className="mr-3 text-gray-300 font-medium text-sm">
                   Filter by Character Type
                 </label>
                 <input
