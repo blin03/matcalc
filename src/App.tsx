@@ -11,7 +11,7 @@ import * as materialSets from './data/materialSets';
 import { CollapsiblePanel } from './components/CollapsiblePanel';
 import { Dropdown } from './components/Dropdown';
 import { MaterialInputField } from './components/MaterialInputField';
-import { getWaveplateCost } from './data/waveplateCosts';
+import { getWaveplateCost, CLAIM_COST } from './data/waveplateCosts';
 
 // Helper function to determine a material's source type based on its name
 const getMaterialSource = (material: Material): string => {
@@ -111,7 +111,7 @@ const App: React.FC = () => {
 
   // Recalculate from cached state
   const [allMaterials, setAllMaterials] = useState<CalculatedMaterial[]>([]);
-  const [totalStamina, setTotalStamina] = useState<number>(0);
+  const [totalWaveplate, setTotalWaveplate] = useState<number>(0);
 
   // Effect to save state to localStorage whenever a persisted state value changes
   useEffect(() => {
@@ -221,17 +221,6 @@ const App: React.FC = () => {
     const finalMaterials = Object.values(consolidatedMaterials);
     setAllMaterials(finalMaterials);
 
-    // Calculate total stamina for all materials needed (before accounting for inventory)
-    const calculatedTotalStamina = finalMaterials.reduce((sum, mat) => {
-      const neededToFarm = Math.max(0, mat.quantity - (materialInventory[mat.material.name] || 0));
-      const materialDetails = getMaterialByName(mat.material.name);
-      const materialSource = getMaterialSource(mat.material);
-      const materialRarity = materialDetails?.rarity;
-
-      const staminaPerUnit = getWaveplateCost(mat.material.name, materialSource, materialRarity);
-      return sum + (neededToFarm * staminaPerUnit);
-    }, 0);
-    setTotalStamina(calculatedTotalStamina);
   }, [
     selectedCharacterId, selectedWeaponId,
     charCurrentLevel, charTargetLevel,
@@ -315,12 +304,38 @@ const App: React.FC = () => {
       const materialDetails = getMaterialByName(mat.material.name);
       const materialRarity = materialDetails?.rarity;
 
-      const staminaPerUnit = getWaveplateCost(mat.material.name, source, materialRarity);
-      groups[source].totalWaveplateCost += (neededToFarm * staminaPerUnit);
+      const waveplatePerUnit = getWaveplateCost(mat.material.name, source, materialRarity);
+      groups[source].totalWaveplateCost += (neededToFarm * waveplatePerUnit);
     });
+
+    for (const sourceCategory in groups) {
+      const group = groups[sourceCategory];
+      let claimCost = 0;
+
+      if (sourceCategory === 'BossMaterial' || sourceCategory === 'WeeklyBossMaterial') {
+        claimCost = CLAIM_COST.BOSS;
+      } else if (sourceCategory === 'ForgeryMaterial' || sourceCategory === 'ExpMaterial' || sourceCategory === 'Currency') {
+        claimCost = CLAIM_COST.CHALLENGE;
+      }
+
+      if (claimCost > 0 && group.totalWaveplateCost > 0) {
+        group.totalWaveplateCost = Math.ceil(group.totalWaveplateCost / claimCost) * claimCost;
+      }
+    }
 
     return groups;
   };
+
+  const materialGroups = groupMaterialsByCategory(remainingNeededMaterials);
+
+  // Effect for calculating overall total waveplates
+  useEffect(() => {
+    const calculatedTotalWaveplate = Object.values(materialGroups).reduce((sum, group) => {
+      return sum + group.totalWaveplateCost;
+    }, 0);
+    setTotalWaveplate(calculatedTotalWaveplate);
+  }, [materialGroups]); // Recalculate whenever materialGroups change
+
 
   // Function to distribute grouped materials to columns
   const distributeCategoriesToColumns = (groups: { [key: string]: { materials: CalculatedMaterial[]; totalWaveplateCost: number } }) => {
@@ -352,7 +367,6 @@ const App: React.FC = () => {
   };
 
 
-  const materialGroups = groupMaterialsByCategory(remainingNeededMaterials);
   const { column1: column1Remaining, column2: column2Remaining } = distributeCategoriesToColumns(materialGroups);
 
   const handleStatNodeChange = (index: number, level: 1 | 2) => (checked: boolean) => {
@@ -435,52 +449,68 @@ const App: React.FC = () => {
     return 'border-gray-700';
   };
 
-  // Helper function to render a column with category headers and Waveplate costs
-  const renderMaterialColumn = (
-    materialGroups: { materials: CalculatedMaterial[]; totalWaveplateCost: number }[],
-    columnKey: string
-  ) => {
-    return materialGroups.map((group, groupIndex) => {
-      const displaySource = materialSourceDisplayNames[getMaterialSource(group.materials[0].material)] || getMaterialSource(group.materials[0].material);
+// Helper function to render a column with category headers and Waveplate costs
+const renderMaterialColumn = (
+  materialGroups: { materials: CalculatedMaterial[]; totalWaveplateCost: number }[],
+  columnKey: string
+) => {
+  return materialGroups.map((group, groupIndex) => {
+    const displaySource = materialSourceDisplayNames[getMaterialSource(group.materials[0].material)] || getMaterialSource(group.materials[0].material);
+    const sourceCategory = getMaterialSource(group.materials[0].material);
+    let claims = 0;
+    let claimCost = 0;
+    
+    if (sourceCategory === 'BossMaterial' || sourceCategory === 'WeeklyBossMaterial') {
+      claimCost = CLAIM_COST.BOSS;
+    } else if (sourceCategory === 'ForgeryMaterial' || sourceCategory === 'ExpMaterial' || sourceCategory === 'Currency') {
+      claimCost = CLAIM_COST.CHALLENGE;
+    }
 
-      return (
-        <React.Fragment key={`${columnKey}-group-${groupIndex}`}>
-          <h4 className="text-lg font-semibold mt-4 mb-2 text-gray-300 border-b border-gray-600 pb-1 first:mt-0 flex items-center justify-between">
-            <span>{displaySource}</span>
-            {group.totalWaveplateCost > 0 && (
-              <span className="flex items-center text-sm font-normal text-cyan-400">
-                <Icon src={WAVEPLATE_ICON_PATH} alt="Waveplates" className="w-5 h-5 mr-1" />
-                {formatWaveplateNumber(group.totalWaveplateCost)} Waveplates
-              </span>
-            )}
-          </h4>
-          {group.materials.map((mat) => {
-            const materialDetails = getMaterialByName(mat.material.name);
-            const iconSrc = materialDetails?.icon || '❓';
-            const rarityGlowClass = getRarityGlowClass(materialDetails?.rarity);
-            const currentInventory = materialInventory[mat.material.name] || 0;
-            const neededToFarm = Math.max(0, mat.quantity - currentInventory);
+    if (claimCost > 0 && group.totalWaveplateCost > 0) {
+      claims = Math.ceil(group.totalWaveplateCost / claimCost);
+    }
 
-            return (
-              <div key={`${columnKey}-${mat.material.name}`} className="flex items-center justify-between gap-4 text-gray-200 py-2">
-                {/* Material Icon & Name */}
-                <div className="flex items-center flex-grow">
-                  <Icon src={iconSrc} alt={mat.material.name} className={`w-10 h-10 mr-4 rounded-full border border-gray-500 ${rarityGlowClass}`} />
-                  <span className="font-medium flex-grow truncate">{mat.material.name}</span>
-                </div>
-                {/* To Farm Quantity */}
-                <div className="flex-shrink-0 text-right min-w-[60px]">
-                  <span className={`text-xl font-extrabold text-gray-300`}>
-                    x{neededToFarm}
-                  </span>
-                </div>
+    return (
+      <React.Fragment key={`${columnKey}-group-${groupIndex}`}>
+        <h4 className="text-lg font-semibold mt-4 mb-2 text-gray-300 border-b border-gray-600 pb-1 first:mt-0 flex items-center justify-between">
+          <span>{displaySource}</span>
+          {group.totalWaveplateCost > 0 && ( 
+            <span className="flex items-center text-sm font-normal text-cyan-400 text-right">
+              <Icon src={WAVEPLATE_ICON_PATH} alt="Waveplates" className="w-5 h-5 mr-1" />
+              {formatWaveplateNumber(group.totalWaveplateCost)} Waveplates
+              {claims > 0 && (
+                <span className="ml-1 text-gray-400">({claims} Runs)</span>
+              )}
+            </span>
+          )}
+        </h4>
+        {group.materials.map((mat) => {
+          const materialDetails = getMaterialByName(mat.material.name);
+          const iconSrc = materialDetails?.icon || '❓';
+          const rarityGlowClass = getRarityGlowClass(materialDetails?.rarity);
+          const currentInventory = materialInventory[mat.material.name] || 0;
+          const neededToFarm = Math.max(0, mat.quantity - currentInventory);
+
+          return (
+            <div key={`${columnKey}-${mat.material.name}`} className="flex items-center justify-between gap-4 text-gray-200 py-2">
+              {/* Material Icon & Name */}
+              <div className="flex items-center flex-grow">
+                <Icon src={iconSrc} alt={mat.material.name} className={`w-10 h-10 mr-4 rounded-full border border-gray-500 ${rarityGlowClass}`} />
+                <span className="font-medium flex-grow truncate">{mat.material.name}</span>
               </div>
-            );
-          })}
-        </React.Fragment>
-      );
-    });
-  };
+              {/* To Farm Quantity */}
+              <div className="flex-shrink-0 text-right min-w-[60px]">
+                <span className={`text-xl font-extrabold text-gray-300`}>
+                  x{neededToFarm}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </React.Fragment>
+    );
+  });
+};
 
   return (
     <div className="bg-gray-950 text-white min-h-screen p-8 font-sans">
@@ -697,12 +727,12 @@ const App: React.FC = () => {
               {remainingNeededMaterials.length > 0 ? (
                 <CollapsiblePanel title="To Be Farmed" defaultOpen={true} panelClassName={`bg-gray-900 border ${getContainerBorderClass()} rounded-xl`}>
                     {/* Total waveplate requirement display */}
-                    {totalStamina > 0 && (
-                      <div className="flex flex-col items-center justify-center text-xl font-bold text-cyan-300 py-3 border-b border-gray-700 bg-gray-800 rounded-t-xl">
+                    {totalWaveplate > 0 && (
+                      <div className="flex flex-col items-center justify-center text-xl font-bold text-cyan-400 py-3 border-b border-gray-700 bg-gray-800 rounded-t-xl">
                         <div className="flex items-center">
                           <Icon src={WAVEPLATE_ICON_PATH} alt="Waveplates" className="w-6 h-6 mr-2" />
-                          <span className="mr-2">Total Waveplate Cost: {formatWaveplateNumber(totalStamina)}</span>
-                          <span className="text-xl font-bold text-gray-400">({Math.ceil(totalStamina / 240)} Days)</span>
+                          <span className="mr-2">Total Waveplate Cost: {formatWaveplateNumber(totalWaveplate)}</span>
+                          <span className="text-xl font-bold text-gray-400">({Math.ceil(totalWaveplate / 240)} Days)</span>
                         </div>
                         <p className="text-sm font-normal text-gray-400 mt-1">Estimations based on drop rate averages at UL70 and above.</p>
                       </div>
