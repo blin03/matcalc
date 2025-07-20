@@ -158,13 +158,19 @@ export enum SpecialtyMaterial {
   BLOODLEAF_VIBURNUM = "Bloodleaf Viburnum",
 
   // v2.5
-  AFTERLIFE = "Afterlife",
+  AFTERLIFE = '"Afterlife"',
 }
 
 
 // Helper to generate icon paths with a subfolder
 const getIconPath = (subfolder: string, name: string) => {
-    const fileName = name.toLowerCase().replace(/ /g, '_').replace(/-/g, '_').replace(/\./g, '').replace(/_t(\d)/, '_t$1');
+    const fileName = name.toLowerCase()
+                       .replace(/ /g, '_')
+                       .replace(/-/g, '_')
+                       .replace(/\./g, '')
+                       .replace(/"/g, '')
+                       .replace(/'/g, '')
+                       .replace(/_t(\d)/, '_t$1');
     return `/assets/icons/materials/${subfolder}/${fileName}.webp`;
 };
 
