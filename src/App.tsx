@@ -160,6 +160,13 @@ const App: React.FC = () => {
     ? weapons.filter(weapon => weapon.type === selectedCharacter.type)
     : weapons;
 
+  // Effect to clear selected weapon when filtering requirements change
+  useEffect(() => {
+    if (selectedWeaponId && !filteredWeapons.some(w => w.id === selectedWeaponId)) {
+      setSelectedWeaponId('');
+    }
+  }, [selectedCharacterId, filterWeaponsByType, filteredWeapons, selectedWeaponId]);
+
   // Effect for calculating materials
   useEffect(() => {
     // Character Materials
@@ -419,6 +426,22 @@ const App: React.FC = () => {
     setMaterialInventory({});
   };
 
+  // Function to reset all level-related states
+  const resetLevels = () => {
+    setCharCurrentLevel(1);
+    setCharTargetLevel(90);
+    setWeaponCurrentLevel(1);
+    setWeaponTargetLevel(90);
+  };
+
+  // Function to reset all skill-related states
+  const resetSkillsAndStats = () => {
+    setSkills(Array(5).fill(1));
+    setTargetSkills(Array(5).fill(10));
+    setStatNodeBooleans(Array(4).fill([true, true]));
+    setInherentSkillBooleans([true, true]);
+  };
+
   const skillLabels = ["Basic Attack", "Resonance Skill", "Forte Circuit", "Resonance Liberation", "Intro Skill"];
   const allowedLevels = [1, 20, 40, 50, 60, 70, 80, 90];
 
@@ -606,13 +629,25 @@ const renderMaterialColumn = (
                       />
                     )}
                   </div>
+                  <div className="flex justify-center mt-2 mb-1">
+                    <button
+                      onClick={resetLevels}
+                      className="text-sm bg-gray-700 hover:bg-red-700 text-white py-2 px-4 rounded-md transition-colors duration-200"
+                    >
+                      Reset
+                    </button>
+                  </div>
                 </CollapsiblePanel>
               )}
 
 
               {/* Skills, Stat Nodes, and Inherent Skills Panel*/}
               {selectedCharacterId && (
-                <CollapsiblePanel title="Skills and Stats" defaultOpen={true} panelClassName={`bg-gray-900 border ${getContainerBorderClass()} rounded-xl`}>
+                <CollapsiblePanel
+                  title="Skills and Stats"
+                  defaultOpen={true}
+                  panelClassName={`bg-gray-900 border ${getContainerBorderClass()} rounded-xl`}
+                >
                   <div className="p-5 space-y-6">
                     {/* Stat Nodes & Inherent Skill Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -667,6 +702,14 @@ const renderMaterialColumn = (
                         />
                       ))}
                     </div>
+                  </div>
+                  <div className="flex justify-center mt-1 mb-1">
+                    <button
+                      onClick={resetSkillsAndStats}
+                      className="text-sm bg-gray-700 hover:bg-red-700 text-white py-2 px-4 rounded-md transition-colors duration-200"
+                    >
+                      Reset
+                    </button>
                   </div>
                 </CollapsiblePanel>
               )}
