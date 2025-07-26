@@ -730,7 +730,6 @@ export const phrolova: Character = createCharacter(
     rarity: 5,
     icon: '/assets/icons/characters/phrolova.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
-    prerelease: true,
   },
   {
     ascension: { boss: BossMaterial.TRUTH_IN_LIES, enemy: ENEMY_POLYGON, specialty: SpecialtyMaterial.AFTERLIFE },

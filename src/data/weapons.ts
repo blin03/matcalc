@@ -784,7 +784,6 @@ export const letheanElegy: Weapon = createWeapon(
     type: WeaponType.RECTIFIER,
     rarity: 5,
     icon: '/assets/icons/weapons/lethean_elegy.webp',
-    prerelease: true,
   },
   {
     ascension: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_RING }
