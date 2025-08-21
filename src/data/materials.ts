@@ -26,7 +26,11 @@ export enum BossMaterial {
   UNFADING_GLORY = "Unfading Glory",
 
   // v2.5
-  TRUTH_IN_LIES = "Truth in Lies"
+  TRUTH_IN_LIES = "Truth in Lies",
+
+  // v2.6
+  ABYSSAL_HUSK = "Abyssal Husk",
+  BLIGHTED_CROWN_OF_PUPPET_KING = "Blighted Crown of Puppet King",
 }
 
 // Enum for Common Enemy Materials
@@ -159,6 +163,10 @@ export enum SpecialtyMaterial {
 
   // v2.5
   AFTERLIFE = '"Afterlife"',
+
+  // v2.6
+  LUMINOUS_CALENDULA = "Luminous Calendula",
+  SLIVERGLOW_BLOOM = "Sliverglow Bloom",
 }
 
 
@@ -194,6 +202,8 @@ export const allMaterials: Material[] = [
   { name: BossMaterial.PLATINUM_CORE, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.PLATINUM_CORE) },
   { name: BossMaterial.UNFADING_GLORY, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.UNFADING_GLORY) },
   { name: BossMaterial.TRUTH_IN_LIES, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.TRUTH_IN_LIES) },
+  { name: BossMaterial.ABYSSAL_HUSK, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.ABYSSAL_HUSK) },
+  { name: BossMaterial.BLIGHTED_CROWN_OF_PUPPET_KING, rarity: 4, type: 'character_ascension', icon: getIconPath('boss', BossMaterial.BLIGHTED_CROWN_OF_PUPPET_KING) },
 
   // Enemy Materials (Tiered Rarities, Character Ascension)
   // LF (Rarity 2) -> MF (Rarity 3) -> HF (Rarity 4) -> FF (Rarity 5)
@@ -297,7 +307,8 @@ export const allMaterials: Material[] = [
   { name: SpecialtyMaterial.BAMBOO_IRIS, rarity: 1, type: 'character_ascension', icon: getIconPath('specialty', SpecialtyMaterial.BAMBOO_IRIS) },
   { name: SpecialtyMaterial.BLOODLEAF_VIBURNUM, rarity: 1, type: 'character_ascension', icon: getIconPath('specialty', SpecialtyMaterial.BLOODLEAF_VIBURNUM) },
   { name: SpecialtyMaterial.AFTERLIFE, rarity: 1, type: 'character_ascension', icon: getIconPath('specialty', SpecialtyMaterial.AFTERLIFE) },
-
+  { name: SpecialtyMaterial.LUMINOUS_CALENDULA, rarity: 1, type: 'character_ascension', icon: getIconPath('specialty', SpecialtyMaterial.LUMINOUS_CALENDULA) },
+  { name: SpecialtyMaterial.SLIVERGLOW_BLOOM, rarity: 1, type: 'character_ascension', icon: getIconPath('specialty', SpecialtyMaterial.SLIVERGLOW_BLOOM) },
 ];
 
 // Helper to get material details by name

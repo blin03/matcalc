@@ -739,6 +739,42 @@ export const phrolova: Character = createCharacter(
   }
 );
 
+export const augusta: Character = createCharacter(
+  {
+    id: 'augusta',
+    name: 'Augusta',
+    type: WeaponType.BROADBLADE,
+    rarity: 5,
+    icon: '/assets/icons/characters/augusta.webp',
+    statNodeNames: ['Crit. Rate+', 'ATK+'],
+    prerelease: true,
+  },
+  {
+    ascension: { boss: BossMaterial.BLIGHTED_CROWN_OF_PUPPET_KING, enemy: ENEMY_TIDAL_RESIDUUM, specialty: SpecialtyMaterial.LUMINOUS_CALENDULA },
+    skill: { forgery: FORGERY_BROADBLADE, enemy: ENEMY_TIDAL_RESIDUUM, weekly: WeeklyBossMaterial.WHEN_IRISES_BLOOM },
+    statNode: { forgery: FORGERY_BROADBLADE, enemy: ENEMY_TIDAL_RESIDUUM, weekly: WeeklyBossMaterial.WHEN_IRISES_BLOOM },
+    inherentSkill: { forgery: FORGERY_BROADBLADE, enemy: ENEMY_TIDAL_RESIDUUM, weekly: WeeklyBossMaterial.WHEN_IRISES_BLOOM },
+  }
+);
+
+export const iuno: Character = createCharacter(
+  {
+    id: 'iuno',
+    name: 'Iuno',
+    type: WeaponType.GAUNTLETS,
+    rarity: 5,
+    icon: '/assets/icons/characters/iuno.webp',
+    statNodeNames: ['Crit. Rate+', 'ATK+'],
+    prerelease: true,
+  },
+  {
+    ascension: { boss: BossMaterial.ABYSSAL_HUSK, enemy: ENEMY_POLYGON, specialty: SpecialtyMaterial.SLIVERGLOW_BLOOM },
+    skill: { forgery: FORGERY_GAUNTLETS, enemy: ENEMY_POLYGON, weekly: WeeklyBossMaterial.THE_NETHERWORLDS_STARE },
+    statNode: { forgery: FORGERY_GAUNTLETS, enemy: ENEMY_POLYGON, weekly: WeeklyBossMaterial.THE_NETHERWORLDS_STARE },
+    inherentSkill: { forgery: FORGERY_GAUNTLETS, enemy: ENEMY_POLYGON, weekly: WeeklyBossMaterial.THE_NETHERWORLDS_STARE },
+  }
+);
+
 export const characters: Character[] = [
   // v1.0
   roverSpectro,
@@ -798,4 +834,8 @@ export const characters: Character[] = [
 
   // v2.5
   phrolova,
+
+  // v2.6
+  augusta,
+  iuno,
 ]

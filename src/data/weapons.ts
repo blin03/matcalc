@@ -790,6 +790,104 @@ export const letheanElegy: Weapon = createWeapon(
   }
 );
 
+export const thunderflareDominion: Weapon = createWeapon(
+  {
+    id: 'thunderflare_dominion',
+    name: 'Thunderflare Dominion',
+    type: WeaponType.BROADBLADE,
+    rarity: 5,
+    icon: '/assets/icons/weapons/thunderflare_dominion.webp',
+    prerelease: true,
+  },
+  {
+    ascension: { forgery: FORGERY_BROADBLADE, enemy: ENEMY_WHISPERIN }
+  }
+);
+
+export const moongazersSigil: Weapon = createWeapon(
+  {
+    id: 'moongazers_sigil',
+    name: "Moongazer's Sigil",
+    type: WeaponType.GAUNTLETS,
+    rarity: 5,
+    icon: '/assets/icons/weapons/moongazers_sigil.webp',
+    prerelease: true,
+  },
+  {
+    ascension: { forgery: FORGERY_GAUNTLETS, enemy: ENEMY_HOWLER }
+  }
+);
+
+export const aureateZenith: Weapon = createWeapon(
+  {
+    id: 'aureate_zenith',
+    name: 'Aureate Zenith',
+    type: WeaponType.BROADBLADE,
+    rarity: 4,
+    icon: '/assets/icons/weapons/aureate_zenith.webp',
+    prerelease: true,
+  },
+  {
+    ascension: { forgery: FORGERY_BROADBLADE, enemy: ENEMY_WHISPERIN }
+  }
+);
+
+export const featherEdge: Weapon = createWeapon(
+  {
+    id: 'feather_edge',
+    name: 'Feather Edge',
+    type: WeaponType.SWORD,
+    rarity: 4,
+    icon: '/assets/icons/weapons/feather_edge.webp',
+    prerelease: true,
+  },
+  {
+    ascension: { forgery: FORGERY_SWORD, enemy: ENEMY_HOWLER }
+  }
+);
+
+export const solarFlame: Weapon = createWeapon(
+  {
+    id: 'solar_flame',
+    name: 'Solar Flame',
+    type: WeaponType.PISTOL,
+    rarity: 4,
+    icon: '/assets/icons/weapons/solar_flame.webp',
+    prerelease: true,
+  },
+  {
+    ascension: { forgery: FORGERY_PISTOL, enemy: ENEMY_RING }
+  }
+);
+
+export const aetherStrike: Weapon = createWeapon(
+  {
+    id: 'aether_strike',
+    name: 'Aether Strike',
+    type: WeaponType.GAUNTLETS,
+    rarity: 4,
+    icon: '/assets/icons/weapons/aether_strike.webp',
+    prerelease: true,
+  },
+  {
+    ascension: { forgery: FORGERY_GAUNTLETS, enemy: ENEMY_HOWLER }
+  }
+);
+
+export const radiantDawn: Weapon = createWeapon(
+  {
+    id: 'radiant_dawn',
+    name: 'Radiant Dawn',
+    type: WeaponType.RECTIFIER,
+    rarity: 4,
+    icon: '/assets/icons/weapons/radiant_dawn.webp',
+    prerelease: true,
+  },
+  {
+    ascension: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_RING }
+  }
+);
+
 export const weapons: Weapon[] = [
   // v1.0
   abyssSurges,
@@ -868,4 +966,13 @@ export const weapons: Weapon[] = [
 
   // v2.5
   letheanElegy,
+
+  // v2.6
+  thunderflareDominion,
+  moongazersSigil,
+  aureateZenith,
+  featherEdge,
+  solarFlame,
+  aetherStrike,
+  radiantDawn,
 ];
