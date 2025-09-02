@@ -797,7 +797,6 @@ export const thunderflareDominion: Weapon = createWeapon(
     type: WeaponType.BROADBLADE,
     rarity: 5,
     icon: '/assets/icons/weapons/thunderflare_dominion.webp',
-    prerelease: true,
   },
   {
     ascension: { forgery: FORGERY_BROADBLADE, enemy: ENEMY_WHISPERIN }
@@ -811,7 +810,6 @@ export const moongazersSigil: Weapon = createWeapon(
     type: WeaponType.GAUNTLETS,
     rarity: 5,
     icon: '/assets/icons/weapons/moongazers_sigil.webp',
-    prerelease: true,
   },
   {
     ascension: { forgery: FORGERY_GAUNTLETS, enemy: ENEMY_HOWLER }
@@ -825,7 +823,6 @@ export const aureateZenith: Weapon = createWeapon(
     type: WeaponType.BROADBLADE,
     rarity: 4,
     icon: '/assets/icons/weapons/aureate_zenith.webp',
-    prerelease: true,
   },
   {
     ascension: { forgery: FORGERY_BROADBLADE, enemy: ENEMY_WHISPERIN }
@@ -839,7 +836,6 @@ export const featherEdge: Weapon = createWeapon(
     type: WeaponType.SWORD,
     rarity: 4,
     icon: '/assets/icons/weapons/feather_edge.webp',
-    prerelease: true,
   },
   {
     ascension: { forgery: FORGERY_SWORD, enemy: ENEMY_HOWLER }
@@ -853,7 +849,6 @@ export const solarFlame: Weapon = createWeapon(
     type: WeaponType.PISTOL,
     rarity: 4,
     icon: '/assets/icons/weapons/solar_flame.webp',
-    prerelease: true,
   },
   {
     ascension: { forgery: FORGERY_PISTOL, enemy: ENEMY_RING }
@@ -867,7 +862,6 @@ export const aetherStrike: Weapon = createWeapon(
     type: WeaponType.GAUNTLETS,
     rarity: 4,
     icon: '/assets/icons/weapons/aether_strike.webp',
-    prerelease: true,
   },
   {
     ascension: { forgery: FORGERY_GAUNTLETS, enemy: ENEMY_HOWLER }
@@ -881,7 +875,6 @@ export const radiantDawn: Weapon = createWeapon(
     type: WeaponType.RECTIFIER,
     rarity: 4,
     icon: '/assets/icons/weapons/radiant_dawn.webp',
-    prerelease: true,
   },
   {
     ascension: { forgery: FORGERY_RECTIFIER, enemy: ENEMY_RING }

@@ -747,7 +747,6 @@ export const augusta: Character = createCharacter(
     rarity: 5,
     icon: '/assets/icons/characters/augusta.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
-    prerelease: true,
   },
   {
     ascension: { boss: BossMaterial.BLIGHTED_CROWN_OF_PUPPET_KING, enemy: ENEMY_TIDAL_RESIDUUM, specialty: SpecialtyMaterial.LUMINOUS_CALENDULA },
@@ -765,7 +764,6 @@ export const iuno: Character = createCharacter(
     rarity: 5,
     icon: '/assets/icons/characters/iuno.webp',
     statNodeNames: ['Crit. Rate+', 'ATK+'],
-    prerelease: true,
   },
   {
     ascension: { boss: BossMaterial.ABYSSAL_HUSK, enemy: ENEMY_POLYGON, specialty: SpecialtyMaterial.SLIVERGLOW_BLOOM },
